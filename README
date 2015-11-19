@@ -1,0 +1,35 @@
+This is an open-source version of the CODENSE algorithm:
+
+Hu H, Yan X, Huang Y, Han J, Zhou XJ: "Mining coherent dense subgraphs
+across massive biological networks for functional discovery."
+Bioinformatics (ISMB 2005), Vol. 21 Suppl. 1 2005, pages 213-221
+http://bioinformatics.oxfordjournals.org/content/21/suppl_1/i213
+
+
+Simply type 'make' to build the 'codense' executable. It requires a text input 
+file containing a list of files, one file name (with path) per line, each one a 
+data set consisting of a header line followed by mRNA expression data, i.e:
+
+probeID        Array1Dye1      Array2Dye1      Array3Dye1      Array4Dye1 ...etc
+1415670_at     9.172966        9.236673        8.789873        8.698874   ...etc
+1415671_at     10.665967       10.677811       10.463303       10.464032  ...etc
+   .               .               .               .               .
+   .               .               .               .               .
+  etc             etc             etc             etc             etc
+
+
+The first column is the specific mRNA ID, and subsequent columns are mRNA 
+expression data, each of which should represent the same state for the 
+organism. Other files represent the organism in different states, and it's 
+best to have as many different states as possible. The first column in all 
+the files needs to be identical.
+CODENSE looks for groups of mRNAs that have correlated expression together 
+across the set of files, or states, indicating potential modules. The output 
+is a printed list of dense subgraphs in adjacency list format, see 
+https://en.wikipedia.org/wiki/Adjacency_list.
+
+Default pipeline parameters may be adjusted in codense.c appropriately. Any 
+modules in the data must be 'on' in at least fraction SUPPORT of the different 
+states. The CODENSE driver starts out with SUPPORT = 0.9, and ratchets down by 
+0.1 each time until SUPPORT = 0.1.
+
