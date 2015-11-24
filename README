@@ -31,5 +31,60 @@ https://en.wikipedia.org/wiki/Adjacency_list.
 Default pipeline parameters may be adjusted in codense.c appropriately. Any 
 modules in the data must be 'on' in at least fraction SUPPORT of the different 
 states. The CODENSE driver starts out with SUPPORT = 0.9, and ratchets down by 
-0.1 each time until SUPPORT = 0.1.
+0.1 each time until SUPPORT = 0.1. This code has been tested on linux platforms
+only.
+
+There is a test set of files in the 'data' directory, use as your input a text
+file with the following entries:
+
+./data/0.txt
+./data/1.txt
+./data/2.txt
+./data/3.txt
+./data/4.txt
+./data/5.txt
+./data/6.txt
+./data/7.txt
+./data/8.txt
+./data/9.txt
+./data/10.txt
+./data/11.txt
+./data/12.txt
+./data/13.txt
+./data/14.txt
+./data/15.txt
+./data/16.txt
+./data/17.txt
+./data/18.txt
+./data/19.txt
+
+i.e. if the above file is called 'input.txt', do
+
+$ ./codense input.txt
+
+and the output should eventually emit the dense subgraphs
+
+
+    Density = 1.00000
+    Node        Edges
+    =================
+   0) P10	P14 P29 P3 P4 P9 
+   1) P14	P10 P29 P3 P4 P9 
+   2) P29	P10 P14 P3 P4 P9 
+   3) P3	P10 P14 P29 P4 P9 
+   4) P4	P10 P14 P29 P3 P9 
+   5) P9	P10 P14 P29 P3 P4 
+    ===========================================
+
+
+    Density = 1.00000
+    Node        Edges
+    =================
+   0) P90	P91 P92 P93 P94 P95 
+   1) P91	P90 P92 P93 P94 P95 
+   2) P92	P90 P91 P93 P94 P95 
+   3) P93	P90 P91 P92 P94 P95 
+   4) P94	P90 P91 P92 P93 P95 
+   5) P95	P90 P91 P92 P93 P94 
+    ===========================================
 
